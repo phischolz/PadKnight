@@ -32,7 +32,7 @@ class HorsePad:
     def is_within(self, loc: tuple):
         """returns true, iff given location is on the board."""
 
-        if self.__pad.shape[0] > loc[0] >= 0 & loc[1] >= 0 and self.__pad.shape[1] > loc[1] >= 0:
+        if self.__pad.shape[0] > loc[0] >= 0 and self.__pad.shape[1] > loc[1] >= 0:
             if self.__pad[loc[0], loc[1]] >= 0:
                 return True
         else:
@@ -44,7 +44,7 @@ class HorsePad:
         *Warning: result my be invalid location!"""
         return tuple(sum(x) for x in zip(self.__loc, offset))
 
-    def move(self, offset):
+    def move(self, offset: tuple):
         """attempts to move cursor by given offset. Returns true, iff it successfully changed cursor"""
         trg_loc = self.loc(offset)
         if self.is_within(trg_loc):
@@ -52,3 +52,6 @@ class HorsePad:
             return True
         else:
             return False
+
+    def get_pad(self):
+        return self.__pad

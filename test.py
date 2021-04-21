@@ -1,6 +1,6 @@
 import unittest
 from horsepad import HorsePad
-from reachability import reachability_recursive
+from reachability import reachability_recursive, reachability_dynamic
 
 
 class DefaultHpTest(unittest.TestCase):
@@ -49,8 +49,17 @@ class DefaultHpTest(unittest.TestCase):
     def test_reachability_core(self):
         self.assertEqual(reachability_recursive(HorsePad(start_position=(1, 1)), 999999), 1)
 
+    # if recursive method is correct, dynamic one must hereby be too
+    def test_equality(self):
+        for max_step in range(10):
+            for start_x in range(4):
+                for start_y in range(3):
+                    if not (start_x == 3 and (start_y == 0 or start_y == 2)):
+                        pad = HorsePad(start_position=(start_x, start_y))
+                        self.assertEqual(reachability_recursive(pad, max_step), reachability_dynamic(pad, max_step))
 
-# TODO non-default HPs
+
+# TODO? non-default HPs
 
 
 if __name__ == '__main__':
