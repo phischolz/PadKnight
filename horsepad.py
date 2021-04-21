@@ -32,9 +32,9 @@ class HorsePad:
     def is_within(self, loc: tuple):
         """returns true, iff given location is on the board."""
 
-        if self.__pad.shape[0] > loc[0] >= 0 & loc[1] >= 0 and loc[1] < self.__pad.shape[1] and \
-                self.__pad[loc[0], loc[1]] >= 0:
-            return True
+        if self.__pad.shape[0] > loc[0] >= 0 & loc[1] >= 0 and self.__pad.shape[1] > loc[1] >= 0:
+            if self.__pad[loc[0], loc[1]] >= 0:
+                return True
         else:
             return False
 
